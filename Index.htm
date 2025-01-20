@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yrickish Day - Word Trickish</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <h1>Yrickish Day - Word Trickish</h1>
+
+        <div class="user-info">
+            <p>User Balance: <span id="user-balance">1000 SMG</span></p>
+            <p>Coins Earned: <span id="coins-earned">500</span></p>
+        </div>
+
+        <div class="level-selection">
+            <h2>Select Level</h2>
+            <button onclick="startGame(1)">Level 1</button>
+            <button onclick="startGame(2)">Level 2</button>
+            <button onclick="startGame(3)">Level 3</button>
+        </div>
+
+        <div class="game-interface" id="game-interface" style="display: none;">
+            <h3>Level 1</h3>
+            <p>Question: If 10 + 10 = 20, what's 11 + 11?</p>
+
+            <div class="word-puzzle">
+                <input type="text" id="word1" maxlength="1" class="word-box">
+                <input type="text" id="word2" maxlength="1" class="word-box">
+                <input type="text" id="word3" maxlength="1" class="word-box">
+                <input type="text" id="word4" maxlength="1" class="word-box">
+                <input type="text" id="word5" maxlength="1" class="word-box">
+            </div>
+
+            <div class="word-bank">
+                <button onclick="fillWord('2')">2</button>
+                <button onclick="fillWord('4')">4</button>
+                <button onclick="fillWord('5')">5</button>
+                <button onclick="fillWord('1')">1</button>
+                <button onclick="fillWord('0')">0</button>
+            </div>
+
+            <button id="submit-btn" onclick="checkAnswer()">Submit Answer</button>
+            <p id="result-message"></p>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>￼Enter
