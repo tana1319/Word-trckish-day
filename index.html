@@ -4,7 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yrickish Day - Word Trickish</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* CSS Styling */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f8ff;
+        }
+
+        .game-container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .user-info, .level-selection {
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .word-puzzle {
+            margin: 20px 0;
+        }
+
+        .word-box {
+            width: 30px;
+            height: 30px;
+            margin: 5px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        .word-bank button {
+            margin: 5px;
+        }
+
+        #result-message {
+            font-weight: bold;
+            color: red;
+        }
+    </style>
 </head>
 <body>
     <div class="game-container">
@@ -47,6 +106,63 @@
         </div>
     </div>
 
-    <script src="game.js"></script>
+    <script>
+        // JavaScript Logic
+        let userBalance = 1000;  // Initial balance
+        let coinsEarned = 500;  // Coins earned
+        let correctAnswer = '22'; // The correct answer for Level 1
+
+        // Function to start the game
+        function startGame(level) {
+            // Show game interface when user selects a level
+            document.getElementById("game-interface").style.display = "block";
+            document.querySelector(".level-selection").style.display = "none";
+            document.getElementById("result-message").innerHTML = "";
+            resetGame();
+        }
+
+        // Function to fill words in the puzzle
+        function fillWord(value) {
+            // Fill the next empty box
+            let inputs = document.querySelectorAll('.word-box');
+            for (let input of inputs) {
+                if (!input.value) {
+                    input.value = value;
+                    break;
+                }
+            }
+        }
+
+        // Function to check if the answer is correct
+        function checkAnswer() {
+            let userAnswer = '';
+            let inputs = document.querySelectorAll('.word-box');
+            for (let input of inputs) {
+                userAnswer += input.value;
+            }
+
+            // Check if the answer is correct
+            if (userAnswer === correctAnswer) {
+                document.getElementById("result-message").innerHTML = "Congrats! You won!";
+                userBalance += 100;  // Add 100 SMG to user balance
+                document.getElementById("user-balance").innerHTML = userBalance + " SMG";
+
+                // Redirect to next level or show level selection
+                setTimeout(() => {
+                    alert("You won! Proceeding to the next level.");
+                    document.getElementById("game-interface").style.display = "none";
+                    document.querySelector(".level-selection").style.display = "block";
+                }, 1000);
+            } else {
+                document.getElementById("result-message").innerHTML = "Incorrect, try again!";
+            }
+        }
+
+        // Function to reset the game interface
+        function resetGame() {
+            let inputs = document.querySelectorAll('.word-box');
+            inputs.forEach(input => input.value = '');  // Clear all word boxes
+        }
+    </script>
 </body>
 </html>
